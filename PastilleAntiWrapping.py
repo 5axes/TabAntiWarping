@@ -177,7 +177,7 @@ class PastilleAntiWrapping(Tool):
              definition = stack.getSettingDefinition(key)
              new_instance = SettingInstance(definition, settings)
              new_instance.setProperty("value", self._UseOffset)
-             new_instance.resetState()  # Ensure that the state is not seen as a user state.
+             # new_instance.resetState()  # Ensure that the state is not seen as a user state.
              settings.addInstance(new_instance)
 
         op = GroupedOperation()
