@@ -14,7 +14,7 @@ from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import QApplication
 
 from cura.CuraApplication import CuraApplication
-from UM.Application import Application
+
 from UM.Logger import Logger
 from UM.Math.Vector import Vector
 from UM.Tool import Tool
@@ -80,7 +80,7 @@ class PastilleAntiWrapping(Tool):
         # convert as float to avoid further issue
         self._UseSize = float(self._preferences.getValue("customsupportcylinder/p_size"))
  
-        self._preferences.addPreference("customsupportcylinder/p_offset", 0.05)
+        self._preferences.addPreference("customsupportcylinder/p_offset", 0.16)
         # convert as float to avoid further issue
         self._UseOffset = float(self._preferences.getValue("customsupportcylinder/p_offset"))
         
@@ -140,20 +140,20 @@ class PastilleAntiWrapping(Tool):
         node.setSelectable(True)
         
         # long=Support Height
-        long=position.y
+        _long=position.y
 
         # get layer_height_0 used to define pastille height
-        id_ex=0
+        _id_ex=0
         
         # This function can be triggered in the middle of a machine change, so do not proceed if the machine change
         # has not done yet.
-        global_container_stack = Application.getInstance().getGlobalContainerStack()
-        extruder = global_container_stack.extruderList[int(id_ex)]    
+        global_container_stack = CuraApplicationApplication.getInstance().getGlobalContainerStack()
+        extruder = global_container_stack.extruderList[int(_id_ex)]    
         _layer_h = extruder.getProperty("layer_height_0", "value")
         Logger.log('d', 'layer_height_0 : ' + str(_layer_h))
         
         # Cylinder creation Diameter , Increment angle 4°, length
-        mesh = self._createPastille(self._UseSize,4,long,_layer_h)
+        mesh = self._createPastille(self._UseSize,4,_long,_layer_h)
         
         node.setMeshData(mesh.build())
 
