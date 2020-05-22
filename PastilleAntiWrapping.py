@@ -16,6 +16,7 @@ from PyQt5.QtWidgets import QApplication
 from cura.CuraApplication import CuraApplication
 
 from UM.Logger import Logger
+from UM.Message import Message
 from UM.Math.Vector import Vector
 from UM.Tool import Tool
 from UM.Event import Event, MouseEvent
@@ -37,6 +38,10 @@ from cura.Scene.CuraSceneNode import CuraSceneNode
 from UM.Scene.ToolHandle import ToolHandle
 from UM.Tool import Tool
 
+from UM.i18n import i18nCatalog
+catalog = i18nCatalog("cura")
+
+
 import math
 import numpy
 
@@ -54,7 +59,7 @@ class PastilleAntiWrapping(Tool):
 
         self._selection_pass = None
 
-        self._i18n_catalog = None
+        # self._i18n_catalog = None
         
         self.setExposedProperties("SSize", "SOffset")
         
@@ -147,7 +152,7 @@ class PastilleAntiWrapping(Tool):
         
         # This function can be triggered in the middle of a machine change, so do not proceed if the machine change
         # has not done yet.
-        global_container_stack = CuraApplicationApplication.getInstance().getGlobalContainerStack()
+        global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
         extruder = global_container_stack.extruderList[int(_id_ex)]    
         _layer_h = extruder.getProperty("layer_height_0", "value")
         Logger.log('d', 'layer_height_0 : ' + str(_layer_h))
@@ -173,13 +178,27 @@ class PastilleAntiWrapping(Tool):
             settings.addInstance(new_instance)
             
         # Define support_xy_distance
-        for key in ["support_xy_distance"]:
-             definition = stack.getSettingDefinition(key)
-             new_instance = SettingInstance(definition, settings)
-             new_instance.setProperty("value", self._UseOffset)
-             # new_instance.resetState()  # Ensure that the state is not seen as a user state.
-             settings.addInstance(new_instance)
+        definition = stack.getSettingDefinition("support_xy_distance")
+        new_instance = SettingInstance(definition, settings)
+        new_instance.setProperty("value", self._UseOffset)
+        # new_instance.resetState()  # Ensure that the state is not seen as a user state.
+        settings.addInstance(new_instance)
 
+
+        id_ex=0
+        global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
+        extruder = global_container_stack.extruderList[int(id_ex)]    
+        
+        _xy_distance = extruder.getProperty("support_xy_distance", "value")
+        if self._UseOffset !=  _xy_distance :
+            _msg = "New value : %8.3f" % (self._UseOffset) 
+            Message(text = "Info modification support_xy_distance :\nNew value : %8.3f" % (self._UseOffset), title = catalog.i18nc("@info:title", "Pastille anti wrapping")).show()
+            Logger.log('d', 'support_xy_distance different : ' + str(_xy_distance))
+            # Define support_xy_distance
+            extruder.setProperty("support_xy_distance", "value", self._UseOffset)
+        
+        
+        
         op = GroupedOperation()
         # First add node to the scene at the correct position/scale, before parenting, so the support mesh does not get scaled with the parent
         op.addOperation(AddSceneNodeOperation(node, self._controller.getScene().getRoot()))

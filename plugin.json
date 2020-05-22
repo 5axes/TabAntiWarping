@@ -1,8 +1,8 @@
 {
-    "name": "Pastille Anti Wrapping",
+    "name": "Warping Tab",
     "author": "5axes",
     "version": "0.0.1",
-    "description": "Create Anti Wrapping Pastille",
+    "description": "Create Anti Warping Tab",
     "i18n-catalog": "cura",
     "api": 5,
     "supported_sdk_versions": ["5.0.0", "6.0.0", "7.0.0"]
