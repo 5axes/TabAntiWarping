@@ -1,14 +1,7 @@
-# Initial Copyright (c) 2018 Lokster <http://lokspace.eu>
+# Initial Copyright (c) 2018 Aldo Hoeben fieldOfView
 # Based on the SupportBlocker plugin by Ultimaker B.V., and licensed under LGPLv3 or higher.
 # All modification 5@xes
-# First release 05-18-2020  to change the initial plugin into cylinder support
-# Modif 0.01 : Cylinder length -> Pick Point to base plate height
-# Modif 0.02 : Using  support_tower_diameter as variable to define the cylinder
-# Modif 0.03 : Using a special parameter  diameter_custom_support as variable to define the cylinder
-# Modif 0.04 : Add a text field to define the diameter
-# Modif 0.05 : Add checkbox and option to switch between Cube / Cylinder
-# Modif 0.06 : Symplify code and store defaut size support in Preference "customsupportcylinder/s_size" default value 5
-# V1.0.0 05-20-2020
+# First release 05-22-2020  First proof of concept
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import QApplication
@@ -45,7 +38,7 @@ catalog = i18nCatalog("cura")
 import math
 import numpy
 
-class PastilleAntiWrapping(Tool):
+class TabAntiWraping(Tool):
     def __init__(self):
         super().__init__()
         

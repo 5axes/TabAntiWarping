@@ -1,7 +1,7 @@
-# Copyright (c) 2019 5axes
+# Copyright (c) 2020 5axes
 # Based on the SupportBlocker plugin by Ultimaker B.V., and licensed under LGPLv3 or higher.
 
-from . import TabAntiWarping
+from . import TabAntiWraping
 
 from UM.i18n import i18nCatalog
 i18n_catalog = i18nCatalog("cura")
@@ -18,4 +18,4 @@ def getMetaData():
     }
 
 def register(app):
-    return { "tool": TabAntiWarping.TabAntiWarping() }
+    return { "tool": TabAntiWraping.TabAntiWraping() }
