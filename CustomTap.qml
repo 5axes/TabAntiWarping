@@ -1,8 +1,8 @@
 // Copyright (c) 2016 Ultimaker B.V.
 // 
 // proterties values
-//   "SSize"   : Pastille Size in mm
-//   "SOffset" : Offset set on pastille in mm
+//   "SSize"   : Tab Size in mm
+//   "SOffset" : Offset set on Tab in mm
 //
 
 import QtQuick 2.2
