@@ -10,10 +10,10 @@ def getMetaData():
     return {
         "tool": {
             "name": i18n_catalog.i18nc("@label", "Tab Anti Warping"),
-            "description": i18n_catalog.i18nc("@info:tooltip", "Tab Anti Warping"),
+            "description": i18n_catalog.i18nc("@info:tooltip", "Add Tab Anti Warping"),
             "icon": "tool_icon.svg",
-            "tool_panel": "CustomTab.qml",
-            "weight": 9
+            "tool_panel": "CustomTap.qml",
+            "weight": 10
         }
     }
 
