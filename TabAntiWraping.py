@@ -133,7 +133,7 @@ class TabAntiWraping(Tool):
     def _createSupportMesh(self, parent: CuraSceneNode, position: Vector):
         node = CuraSceneNode()
 
-        node.setName("Pastille")
+        node.setName("RoundTab")
             
         node.setSelectable(True)
         
