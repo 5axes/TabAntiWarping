@@ -38,5 +38,6 @@ on Mac: ~/Library/Application Support/cura/[YOUR CURA VERSION]/plugins/TabAntiWa
 
 * The length of the support is automaticaly set to the Initial Layer Height .
 
+- Change de value for the tab *X/Y Distance* in numeric input field in the tool panel if necessary this value will adjust the distance between the tab treated as support and the model . By keeping enought distance, the tab will be easier to remove. 
 
 >Note: it's easier to add/remove tabs when you are in "Solid View" mode
