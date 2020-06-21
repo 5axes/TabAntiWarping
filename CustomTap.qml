@@ -50,6 +50,7 @@ Item
             renderType: Text.NativeRendering
             width: Math.ceil(contentWidth) //Make sure that the grid cells have an integer width.
         }
+		
 		TextField
         {
             id: sizeTextField

@@ -47,7 +47,7 @@ class TabAntiWarping(Tool):
         self._UseOffset = 0.0
         
         # Shortcut
-        self._shortcut_key = Qt.Key_F
+        self._shortcut_key = Qt.Key_I
         self._controller = self.getController()
 
         self._selection_pass = None
