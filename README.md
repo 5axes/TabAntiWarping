@@ -36,7 +36,7 @@ on Mac: ~/Library/Application Support/cura/[YOUR CURA VERSION]/plugins/TabAntiWa
 
 - **Clicking existing support cylinder + Ctrl** switch automaticaly to the Translate Tool to modify the position of the support.
 
-* The length of the support is automaticaly set to the Initial Layer Height .
+* The length of the tabs is automaticaly set to the Initial Layer Height .
 
 - Change de value for the tab *X/Y Distance* in numeric input field in the tool panel if necessary this value will adjust the distance between the tab treated as support and the model . By keeping enought distance, the tab will be easier to remove. 
 
