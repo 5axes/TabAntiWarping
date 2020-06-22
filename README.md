@@ -29,12 +29,11 @@ on Mac: ~/Library/Application Support/cura/[YOUR CURA VERSION]/plugins/TabAntiWa
 - Click on the "Tab Anti Warping" button on the left toolbar  (Shortcut I)
 - Change de value for the tab *Size* in numeric input field in the tool panel if necessary
 
+- Click anywhere on the model to place rounded Tab there
 
-- Click anywhere on the model to place support cylinder there
+- **Clicking existing rounded Tab deletes it**
 
-- **Clicking existing support cylinder deletes it**
-
-- **Clicking existing support cylinder + Ctrl** switch automaticaly to the Translate Tool to modify the position of the support.
+- **Clicking existing rounded Tab + Ctrl** switch automaticaly to the Translate Tool to modify the position of the element.
 
 * The length of the tabs is automaticaly set to the Initial Layer Height .
 
