@@ -27,7 +27,7 @@ Download & extract the repository as ZIP or clone it. Copy the files/plugins/Tab
 ### Automatic Install
 
 This plugin is now avalaible in the markerplace of cura. So you can install it automaticaly from this place:
-![Automatic Install](./images/MarketPlace.JPG)
+![Automatic Install](./images/marketplace.jpg)
 
 ## How to use
 
