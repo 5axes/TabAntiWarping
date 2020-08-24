@@ -43,6 +43,11 @@ This plugin is now avalaible in the markerplace of cura. So you can install it a
 
 * The length of the tabs is automaticaly set to the Initial Layer Height .
 
+To get the right result you should activate the option Enable Support Brim in the Support settings section : ![Settings](https://github.com/5axes/TabAntiWarping/blob/master/images/settings.jpg)
+
 - Change de value for the tab *X/Y Distance* in numeric input field in the tool panel if necessary this value will adjust the distance between the tab treated as support and the model . By keeping enought distance, the tab will be easier to remove. 
+
+
+
 
 >Note: it's easier to add/remove tabs when you are in "Solid View" mode
