@@ -2,6 +2,9 @@
 # Based on the SupportBlocker plugin by Ultimaker B.V., and licensed under LGPLv3 or higher.
 # All modification 5@xes
 # First release 05-22-2020  First proof of concept
+#--------------------------------------------------------------------------------------------
+# V1.0.1 11-11-2020 Change the default height _layer_h = _layer_h * 1.2
+#--------------------------------------------------------------------------------------------
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import QApplication
@@ -148,7 +151,8 @@ class TabAntiWarping(Tool):
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
         extruder = global_container_stack.extruderList[int(_id_ex)]    
         _layer_h = extruder.getProperty("layer_height_0", "value")
-        Logger.log('d', 'layer_height_0 : ' + str(_layer_h))
+        # Logger.log('d', 'layer_height_0 : ' + str(_layer_h))
+        _layer_h = _layer_h * 1.2   
         
         # Cylinder creation Diameter , Increment angle 4°, length
         mesh = self._createPastille(self._UseSize,4,_long,_layer_h)
@@ -267,8 +271,9 @@ class TabAntiWarping(Tool):
             verts.append([r*math.cos(i*ang), sup, r*math.sin(i*ang)])
             #Bottom 
             verts.append([0, l, 0])
-            verts.append([r*math.cos((i+1)*ang), l, r*math.sin((i+1)*ang)]) 
             verts.append([r*math.cos(i*ang), l, r*math.sin(i*ang)])
+            verts.append([r*math.cos((i+1)*ang), l, r*math.sin((i+1)*ang)]) 
+            
             
         mesh.setVertices(numpy.asarray(verts, dtype=numpy.float32))
 
