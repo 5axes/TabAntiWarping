@@ -14,20 +14,14 @@ Test with a diameter of 20mm and Support X/Y Distance=0.2mm. To keep a support w
 
 
 ## Installation
-First, make sure your Cura version is 4.0 or newer.
+First, make sure your Cura version is 3.6 or newer.
 
-### Manual Install
+Manual Install Download & extract the repository as ZIP or clone it. Copy the files/plugins/TabAntiWarping directory to:
 
-Download & extract the repository as ZIP or clone it. Copy the files/plugins/TabAntiWarping directory to:
+on Windows: [Cura installation folder]/plugins/TabAntiWarping
+on Linux: ~/.local/share/cura/[YOUR CURA VERSION]/plugins/TabAntiWarping (e.g. ~/.local/share/cura/4.6/plugins/TabAntiWarping)
+on Mac: ~/Library/Application Support/cura/[YOUR CURA VERSION]/plugins/TabAntiWarping
 
-- on Windows: [Cura installation folder]/plugins/TabAntiWarping
-- on Linux: ~/.local/share/cura/[YOUR CURA VERSION]/plugins/TabAntiWarping (e.g. ~/.local/share/cura/4.6/plugins/TabAntiWarping)
-- on Mac: ~/Library/Application Support/cura/[YOUR CURA VERSION]/plugins/TabAntiWarpin
-
-### Automatic Install
-
-This plugin is now avalaible in the markerplace of cura. So you can install it automaticaly from this place:
-![Automatic Install](./images/marketplace.jpg)
 
 ## How to use
 
@@ -35,19 +29,15 @@ This plugin is now avalaible in the markerplace of cura. So you can install it a
 - Click on the "Tab Anti Warping" button on the left toolbar  (Shortcut I)
 - Change de value for the tab *Size* in numeric input field in the tool panel if necessary
 
-- Click anywhere on the model to place rounded Tab there
 
-- **Clicking existing rounded Tab deletes it**
+- Click anywhere on the model to place support cylinder there
 
-- **Clicking existing rounded Tab + Ctrl** switch automaticaly to the Translate Tool to modify the position of the element.
+- **Clicking existing support cylinder deletes it**
+
+- **Clicking existing support cylinder + Ctrl** switch automaticaly to the Translate Tool to modify the position of the support.
 
 * The length of the tabs is automaticaly set to the Initial Layer Height .
 
-To get the right result you should activate the option Enable Support Brim in the Support settings section : ![Settings](https://github.com/5axes/TabAntiWarping/blob/master/images/settings.jpg)
-
 - Change de value for the tab *X/Y Distance* in numeric input field in the tool panel if necessary this value will adjust the distance between the tab treated as support and the model . By keeping enought distance, the tab will be easier to remove. 
-
-
-
 
 >Note: it's easier to add/remove tabs when you are in "Solid View" mode
