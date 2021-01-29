@@ -181,7 +181,7 @@ class TabAntiWarping(Tool):
         # new_instance.resetState()  # Ensure that the state is not seen as a user state.
         settings.addInstance(new_instance)
 
-
+        # Fix some settings in Cura to get a better result
         id_ex=0
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
         extruder = global_container_stack.extruderList[int(id_ex)]    
