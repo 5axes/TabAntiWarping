@@ -4,6 +4,7 @@
 # First release 05-22-2020  First proof of concept
 #--------------------------------------------------------------------------------------------
 # V1.0.1 11-11-2020 Change the default height _layer_h = _layer_h * 1.2
+# V1.1.0 19-02-2021 Add Capsule option on Reality4DEvolution idea
 #--------------------------------------------------------------------------------------------
 
 from PyQt5.QtCore import Qt, QTimer
@@ -57,7 +58,7 @@ class TabAntiWarping(Tool):
 
         # self._i18n_catalog = None
         
-        self.setExposedProperties("SSize", "SOffset")
+        self.setExposedProperties("SSize", "SOffset", "SCapsule")
         
         CuraApplication.getInstance().globalContainerStackChanged.connect(self._updateEnabled)
         
@@ -84,7 +85,10 @@ class TabAntiWarping(Tool):
         self._preferences.addPreference("customsupportcylinder/p_offset", 0.16)
         # convert as float to avoid further issue
         self._UseOffset = float(self._preferences.getValue("customsupportcylinder/p_offset"))
-        
+
+        self._preferences.addPreference("customsupportcylinder/as_capsule", False)
+        # convert as float to avoid further issue
+        self._AsCapsule = bool(self._preferences.getValue("customsupportcylinder/as_capsule"))        
                 
     def event(self, event):
         super().event(event)
@@ -151,11 +155,17 @@ class TabAntiWarping(Tool):
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
         extruder = global_container_stack.extruderList[int(_id_ex)]    
         _layer_h = extruder.getProperty("layer_height_0", "value")
+        _line_w = extruder.getProperty("line_width", "value")
         # Logger.log('d', 'layer_height_0 : ' + str(_layer_h))
         _layer_h = _layer_h * 1.2   
+        _line_w = _line_w * 1.2 
         
-        # Cylinder creation Diameter , Increment angle 4°, length
-        mesh = self._createPastille(self._UseSize,4,_long,_layer_h)
+        if self._AsCapsule:
+             # Cylinder creation Diameter , Increment angle 4°, length
+            mesh = self._createCapsule(self._UseSize,4,_long,_layer_h,_line_w)       
+        else:
+            # Cylinder creation Diameter , Increment angle 4°, length
+            mesh = self._createPastille(self._UseSize,4,_long,_layer_h)
         
         node.setMeshData(mesh.build())
 
@@ -167,12 +177,26 @@ class TabAntiWarping(Tool):
         settings = stack.getTop()
 
         # support_mesh type
-        for key in ["support_mesh", "support_mesh_drop_down"]:
-            definition = stack.getSettingDefinition(key)
-            new_instance = SettingInstance(definition, settings)
-            new_instance.setProperty("value", True)
-            new_instance.resetState()  # Ensure that the state is not seen as a user state.
-            settings.addInstance(new_instance)
+        definition = stack.getSettingDefinition("support_mesh")
+        new_instance = SettingInstance(definition, settings)
+        new_instance.setProperty("value", True)
+        new_instance.resetState()  # Ensure that the state is not seen as a user state.
+        settings.addInstance(new_instance)
+
+        definition = stack.getSettingDefinition("support_mesh_drop_down")
+        new_instance = SettingInstance(definition, settings)
+        new_instance.setProperty("value", False)
+        new_instance.resetState()  # Ensure that the state is not seen as a user state.
+        settings.addInstance(new_instance)
+ 
+        if self._AsCapsule:
+            s_p = global_container_stack.getProperty("support_type", "value")
+            if s_p ==  'buildplate' :
+                Message(text = "Info modification support_type new value : everywhere", title = catalog.i18nc("@info:title", "Custom Supports Cylinder")).show()
+                Logger.log('d', 'support_type different : ' + str(s_p))
+                # Define support_type=everywhere
+                global_container_stack.setProperty("support_type", "value", 'everywhere')
+
             
         # Define support_xy_distance
         definition = stack.getSettingDefinition("support_xy_distance")
@@ -243,7 +267,78 @@ class TabAntiWarping(Tool):
             self._skip_press = False
 
         self._had_selection = has_selection
-    
+ 
+    # Capsule creation
+    def _createCapsule(self, size, nb , lg, He, lw):
+        mesh = MeshBuilder()
+        # Per-vertex normals require duplication of vertices
+        r = size / 2
+        # First layer length
+        sup = -lg + He
+        sup_c = -lg + (He * 4)
+        l = -lg
+        rng = int(360 / nb)
+        ang = math.radians(nb)
+
+        r_sup=math.tan(math.radians(45))*(He * 4)+r
+        ri=r_sup-(2.1*lw)
+        rit=r-(2.1*lw)
+
+            
+        verts = []
+        for i in range(0, rng):
+            # Top
+            verts.append([ri*math.cos(i*ang), sup_c, ri*math.sin(i*ang)])
+            verts.append([r_sup*math.cos((i+1)*ang), sup_c, r_sup*math.sin((i+1)*ang)])
+            verts.append([r_sup*math.cos(i*ang), sup_c, r_sup*math.sin(i*ang)])
+            
+            verts.append([ri*math.cos((i+1)*ang), sup_c, ri*math.sin((i+1)*ang)])
+            verts.append([r_sup*math.cos((i+1)*ang), sup_c, r_sup*math.sin((i+1)*ang)])
+            verts.append([ri*math.cos(i*ang), sup_c, ri*math.sin(i*ang)])
+
+            #Side 1a
+            verts.append([r_sup*math.cos(i*ang), sup_c, r_sup*math.sin(i*ang)])
+            verts.append([r_sup*math.cos((i+1)*ang), sup_c, r_sup*math.sin((i+1)*ang)])
+            verts.append([r*math.cos((i+1)*ang), l, r*math.sin((i+1)*ang)])
+            
+            #Side 1b
+            verts.append([r*math.cos((i+1)*ang), l, r*math.sin((i+1)*ang)])
+            verts.append([r*math.cos(i*ang), l, r*math.sin(i*ang)])
+            verts.append([r_sup*math.cos(i*ang), sup_c, r_sup*math.sin(i*ang)])
+ 
+            #Side 2a
+            verts.append([rit*math.cos((i+1)*ang), sup, rit*math.sin((i+1)*ang)])
+            verts.append([ri*math.cos((i+1)*ang), sup_c, ri*math.sin((i+1)*ang)])
+            verts.append([ri*math.cos(i*ang), sup_c, ri*math.sin(i*ang)])
+            
+            #Side 2b
+            verts.append([ri*math.cos(i*ang), sup_c, ri*math.sin(i*ang)])
+            verts.append([rit*math.cos(i*ang), sup, rit*math.sin(i*ang)])
+            verts.append([rit*math.cos((i+1)*ang), sup, rit*math.sin((i+1)*ang)])
+                
+            #Bottom Top
+            verts.append([0, sup, 0])
+            verts.append([rit*math.cos((i+1)*ang), sup, rit*math.sin((i+1)*ang)])
+            verts.append([rit*math.cos(i*ang), sup, rit*math.sin(i*ang)])
+            
+            #Bottom 
+            verts.append([0, l, 0])
+            verts.append([r*math.cos(i*ang), l, r*math.sin(i*ang)])
+            verts.append([r*math.cos((i+1)*ang), l, r*math.sin((i+1)*ang)]) 
+            
+            
+        mesh.setVertices(numpy.asarray(verts, dtype=numpy.float32))
+
+        indices = []
+        # for every angle increment 24 Vertices
+        tot = rng * 24
+        for i in range(0, tot, 3): # 
+            indices.append([i, i+1, i+2])
+        mesh.setIndices(numpy.asarray(indices, dtype=numpy.int32))
+
+        mesh.calculateNormals()
+        return mesh
+        
     # Cylinder creation
     def _createPastille(self, size, nb , lg, He):
         mesh = MeshBuilder()
@@ -330,3 +425,16 @@ class TabAntiWarping(Tool):
         self._UseOffset = s_value
         self._preferences.setValue("customsupportcylinder/p_offset", s_value)
 
+    def getSCapsule(self) -> bool:
+        """ 
+            return: golabl _AsCapsule  as boolean
+        """           
+        return self._AsCapsule
+  
+    def setSCapsule(self, SCapsule: bool) -> None:
+        """
+        param SCapsule: as boolean.
+        """
+        self._AsCapsule = SCapsule
+        self._preferences.setValue("customsupportcylinder/as_capsule", SCapsule)
+        

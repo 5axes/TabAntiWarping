@@ -1,8 +1,9 @@
 // Copyright (c) 2016 Ultimaker B.V.
 // 
 // proterties values
-//   "SSize"   : Tab Size in mm
-//   "SOffset" : Offset set on Tab in mm
+//   "SSize"    : Tab Size in mm
+//   "SOffset"  : Offset set on Tab in mm
+//   "SCapsule" : Define as capsule
 //
 
 import QtQuick 2.2
@@ -93,6 +94,18 @@ Item
             }
         }
     }
+	CheckBox
+	{
+		id: useCapsuleCheckbox;
+		anchors.top: textfields.bottom;
+		anchors.topMargin: UM.Theme.getSize("default_margin").height;
+		anchors.left: parent.left;
+		text: catalog.i18nc("@option:check","Define as Capsule");
+		style: UM.Theme.styles.partially_checkbox;
+		visible: abutmentButton.checked;
 
-
+		checked: UM.ActiveTool.properties.getValue("SCapsule");
+		onClicked: UM.ActiveTool.setProperty("SCapsule", checked);
+		
+	}
 }
