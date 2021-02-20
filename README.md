@@ -27,6 +27,7 @@ on Mac: ~/Library/Application Support/cura/[YOUR CURA VERSION]/plugins/TabAntiWa
 
 ### Automatic installation
 First, make sure your Cura version is 4.5 or newer. This plugin is now avalaible in the Cura marketplace. So you can install it automaticaly from this place:
+
 ![Automatic Install](./images/marketplace.jpg)
 
 [Tab Anti Warping on Ultimaker Market place](https://marketplace.ultimaker.com/app/cura/plugins/5axes/TabAntiWarping)
