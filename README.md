@@ -15,13 +15,22 @@ Test with a diameter of 20mm and Support X/Y Distance=0.2mm. To keep a support w
 
 
 ## Installation
-First, make sure your Cura version is 3.6 or newer.
+First, make sure your Cura version is  4.5 or newer.
 
 Manual Install Download & extract the repository as ZIP or clone it. Copy the files/plugins/TabAntiWarping directory to:
 
 on Windows: [Cura installation folder]/plugins/TabAntiWarping
+
 on Linux: ~/.local/share/cura/[YOUR CURA VERSION]/plugins/TabAntiWarping (e.g. ~/.local/share/cura/4.6/plugins/TabAntiWarping)
+
 on Mac: ~/Library/Application Support/cura/[YOUR CURA VERSION]/plugins/TabAntiWarping
+
+### Automatic installation
+First, make sure your Cura version is 4.5 or newer. This plugin is now avalaible in the Cura marketplace. So you can install it automaticaly from this place:
+![Automatic Install](./images/marketplace.jpg)
+
+[Tab Anti Warping on Ultimaker Market place](https://marketplace.ultimaker.com/app/cura/plugins/5axes/TabAntiWarping)
+
 
 
 ## How to use
