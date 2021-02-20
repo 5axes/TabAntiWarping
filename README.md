@@ -30,13 +30,13 @@ on Mac: ~/Library/Application Support/cura/[YOUR CURA VERSION]/plugins/TabAntiWa
 - Change de value for the tab *Size* in numeric input field in the tool panel if necessary
 
 
-- Click anywhere on the model to place support cylinder there
+- Click anywhere on the model to place "Tab Anti Warping" there
 
 - **Clicking existing Tab deletes it**
 
 - **Clicking existing Tab + Ctrl** switch automaticaly to the Translate Tool to modify the position of the "Tab Anti Warping".
 
-* The length of the tabs is automaticaly set to the Initial Layer Height .
+* The height of the tabs is automaticaly set to the Initial Layer Height .
 
 - Change de value for the tab *X/Y Distance* in numeric input field in the tool panel if necessary this value will adjust the distance between the tab treated as support and the model . By keeping enought distance, the tab will be easier to remove. 
 
