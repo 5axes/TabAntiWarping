@@ -9,7 +9,8 @@ Test with a diameter of 20mm and Support X/Y Distance=0.2mm. To keep a support w
 
 ![Pastille](./images/test.jpg)
 
-**Actual solution limited by the possibility to use just a global : Support X/Y Distance**
+
+**Note : Actual solution is limited by the possibility to use just a global : Support X/Y Distance**
 
 
 
