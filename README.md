@@ -48,7 +48,7 @@ New option "Define as Capsule" to create a Capsule style tab.
 
 ![Menu](./images/menu.png)
 
-This new design has been integrated following the request of [Reality4DEvolution](https://github.com/Reality4DEvolution) in this post :[https://github.com/5axes/TabAntiWarping/issues/7](https://github.com/5axes/TabAntiWarping/issues/7) 
+This new design has been integrated following the request of [Reality4DEvolution](https://github.com/Reality4DEvolution) in this post : [issues#7](https://github.com/5axes/TabAntiWarping/issues/7) 
 
 ![Capsule design](./images/capsule.png)
 
