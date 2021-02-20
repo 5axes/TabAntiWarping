@@ -32,12 +32,25 @@ on Mac: ~/Library/Application Support/cura/[YOUR CURA VERSION]/plugins/TabAntiWa
 
 - Click anywhere on the model to place support cylinder there
 
-- **Clicking existing support cylinder deletes it**
+- **Clicking existing Tab deletes it**
 
-- **Clicking existing support cylinder + Ctrl** switch automaticaly to the Translate Tool to modify the position of the support.
+- **Clicking existing Tab + Ctrl** switch automaticaly to the Translate Tool to modify the position of the "Tab Anti Warping".
 
 * The length of the tabs is automaticaly set to the Initial Layer Height .
 
 - Change de value for the tab *X/Y Distance* in numeric input field in the tool panel if necessary this value will adjust the distance between the tab treated as support and the model . By keeping enought distance, the tab will be easier to remove. 
 
 >Note: it's easier to add/remove tabs when you are in "Solid View" mode
+
+### Update V1.1.0
+
+New option "Define as Capsule" to create a Capsule style tab. 
+
+![Menu](./images/menu.png)
+
+This new design has been integrated following the request of [Reality4DEvolution](https://github.com/Reality4DEvolution) in this post :[https://github.com/5axes/TabAntiWarping/issues/7](https://github.com/5axes/TabAntiWarping/issues/7) 
+
+![Capsule design](./images/capsule.png)
+
+The new design should offer a bevel on the outsite of the tab to be much more easy to remove, as you can get the scraper under it, and start to remove the project much easier.
+![Scrapper](./images/test-capsule.jpg)
