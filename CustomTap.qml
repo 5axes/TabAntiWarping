@@ -103,9 +103,7 @@ Item
 		text: catalog.i18nc("@option:check","Define as Capsule");
 		style: UM.Theme.styles.partially_checkbox;
 		visible: abutmentButton.checked;
-
 		checked: UM.ActiveTool.properties.getValue("SCapsule");
-		onClicked: UM.ActiveTool.setProperty("SCapsule", checked);
-		
+		onClicked: UM.ActiveTool.setProperty("SCapsule", checked)
 	}
 }

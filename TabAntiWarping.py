@@ -275,15 +275,16 @@ class TabAntiWarping(Tool):
         r = size / 2
         # First layer length
         sup = -lg + He
-        sup_c = -lg + (He * 4)
+        sup_c = -lg + (He * 3)
         l = -lg
         rng = int(360 / nb)
         ang = math.radians(nb)
 
-        r_sup=math.tan(math.radians(45))*(He * 4)+r
-        ri=r_sup-(2.1*lw)
-        rit=r-(2.1*lw)
-
+        r_sup=math.tan(math.radians(45))*(He * 3)+r
+        # Top inside radius 
+        ri=r_sup-(1.8*lw)
+        # Top radius 
+        rit=r-(1.8*lw)
             
         verts = []
         for i in range(0, rng):
