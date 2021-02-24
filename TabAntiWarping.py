@@ -1,11 +1,12 @@
+#------------------------------------------------------------------------------------------------------------------
 # Initial Copyright (c) 2018 Aldo Hoeben fieldOfView
 # Based on the SupportBlocker plugin by Ultimaker B.V., and licensed under LGPLv3 or higher.
 # All modification 5@xes
 # First release 05-22-2020  First proof of concept
-#--------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------
 # V1.0.1 11-11-2020 Change the default height _layer_h = _layer_h * 1.2
-# V1.1.0 19-02-2021 Add Capsule option on Reality4DEvolution idea
-#--------------------------------------------------------------------------------------------
+# V1.1.0 19-02-2021 Add Capsule option on Reality4DEvolution idea   Change supported release from API 7 (Cura 4.4)
+#------------------------------------------------------------------------------------------------------------------
 
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import QApplication
