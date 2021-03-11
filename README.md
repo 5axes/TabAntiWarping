@@ -87,6 +87,6 @@ New option "Number of layer" to create tabs with several layer height.
 
 If the number of layer is bigger than 1, then the **Support Density** is automaticaly set to 100%.
 
-![Message 100%](./images/message100%.jpg)
+![Message 100%](./images/message100pc.jpg)
 
 [![Version 2.5.5](http://img.youtube.com/vi/f2QXBWynIog/0.jpg)](http://www.youtube.com/watch?v=f2QXBWynIog)
