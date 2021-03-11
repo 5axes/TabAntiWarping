@@ -115,9 +115,9 @@ Item
             text: UM.ActiveTool.properties.getValue("NLayer")
             validator: DoubleValidator
             {
-                decimals: 0
+				decimals: 0
 				bottom: 1.0
-                locale: "en_US"
+				locale: "en_US"
             }
 
             onEditingFinished:
