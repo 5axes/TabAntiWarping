@@ -26,7 +26,7 @@ on Linux: ~/.local/share/cura/[YOUR CURA VERSION]/plugins/TabAntiWarping (e.g. ~
 on Mac: ~/Library/Application Support/cura/[YOUR CURA VERSION]/plugins/TabAntiWarping
 
 ### Automatic installation
-First, make sure your Cura version is 4.5 or newer. This plugin is now avalaible in the Cura marketplace. So you can install it automaticaly from this place:
+First, make sure your Cura version is 4.4 or newer. This plugin is now avalaible in the Cura marketplace. So you can install it automaticaly from this place:
 
 ![Automatic Install](./images/marketplace.jpg)
 
@@ -85,4 +85,4 @@ New option "Number of layer" to create tabs with several layer height.
 
 ![Menu](./images/menu.jpg)
 
-If the number of layer is bigger than 1, then the *Support Density* is automaticaly set to 100%
+If the number of layer is bigger than 1, then the **Support Density** is automaticaly set to 100%
