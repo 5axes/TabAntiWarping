@@ -4,6 +4,7 @@
 //   "SSize"    : Tab Size in mm
 //   "SOffset"  : Offset set on Tab in mm
 //   "SCapsule" : Define as capsule
+//   "NLayer"   : Number of layer
 //
 
 import QtQuick 2.2
@@ -45,6 +46,17 @@ Item
         {
             height: UM.Theme.getSize("setting_control").height;
             text: "X/Y Distance";
+            font: UM.Theme.getFont("default");
+            color: UM.Theme.getColor("text");
+            verticalAlignment: Text.AlignVCenter;
+            renderType: Text.NativeRendering
+            width: Math.ceil(contentWidth) //Make sure that the grid cells have an integer width.
+        }
+
+        Label
+        {
+            height: UM.Theme.getSize("setting_control").height;
+            text: "Number of layer";
             font: UM.Theme.getFont("default");
             color: UM.Theme.getColor("text");
             verticalAlignment: Text.AlignVCenter;
@@ -93,6 +105,26 @@ Item
                 UM.ActiveTool.setProperty("SOffset", modified_text);
             }
         }
+
+		TextField
+        {
+            id: numberlayerTextField
+            width: UM.Theme.getSize("setting_control").width;
+            height: UM.Theme.getSize("setting_control").height;
+            style: UM.Theme.styles.text_field;
+            text: UM.ActiveTool.properties.getValue("NLayer")
+            validator: DoubleValidator
+            {
+                decimals: 0
+				bottom: 1.0
+                locale: "en_US"
+            }
+
+            onEditingFinished:
+            {
+                UM.ActiveTool.setProperty("NLayer", text);
+            }
+        }		
     }
 	CheckBox
 	{

@@ -6,6 +6,7 @@
 #------------------------------------------------------------------------------------------------------------------
 # V1.0.1 11-11-2020 Change the default height _layer_h = _layer_h * 1.2
 # V1.1.0 19-02-2021 Add Capsule option on Reality4DEvolution idea   Change supported release from API 7 (Cura 4.4)
+# V1.2.0 11-03-2021 Add option Number of layer
 #------------------------------------------------------------------------------------------------------------------
 
 from PyQt5.QtCore import Qt, QTimer
@@ -50,6 +51,8 @@ class TabAntiWarping(Tool):
         # variable for menu dialog        
         self._UseSize = 0.0
         self._UseOffset = 0.0
+        self._AsCapsule = False
+        self._Nb_Layer = 1
         
         # Shortcut
         self._shortcut_key = Qt.Key_I
@@ -59,7 +62,7 @@ class TabAntiWarping(Tool):
 
         # self._i18n_catalog = None
         
-        self.setExposedProperties("SSize", "SOffset", "SCapsule")
+        self.setExposedProperties("SSize", "SOffset", "SCapsule", "NLayer")
         
         CuraApplication.getInstance().globalContainerStackChanged.connect(self._updateEnabled)
         
@@ -89,7 +92,11 @@ class TabAntiWarping(Tool):
 
         self._preferences.addPreference("customsupportcylinder/as_capsule", False)
         # convert as float to avoid further issue
-        self._AsCapsule = bool(self._preferences.getValue("customsupportcylinder/as_capsule"))        
+        self._AsCapsule = bool(self._preferences.getValue("customsupportcylinder/as_capsule"))   
+
+        self._preferences.addPreference("customsupportcylinder/nb_layer", 1)
+        # convert as float to avoid further issue
+        self._Nb_Layer = int(self._preferences.getValue("customsupportcylinder/nb_layer"))        
                 
     def event(self, event):
         super().event(event)
@@ -155,10 +162,11 @@ class TabAntiWarping(Tool):
         # has not done yet.
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
         extruder = global_container_stack.extruderList[int(_id_ex)]    
-        _layer_h = extruder.getProperty("layer_height_0", "value")
+        _layer_h_i = extruder.getProperty("layer_height_0", "value")
+        _layer_height = extruder.getProperty("layer_height", "value")
         _line_w = extruder.getProperty("line_width", "value")
-        # Logger.log('d', 'layer_height_0 : ' + str(_layer_h))
-        _layer_h = _layer_h * 1.2   
+        # Logger.log('d', 'layer_height_0 : ' + str(_layer_h_i))
+        _layer_h = (_layer_h_i * 1.2) + (_layer_height * (self._Nb_Layer -1) )
         _line_w = _line_w * 1.2 
         
         if self._AsCapsule:
@@ -193,11 +201,11 @@ class TabAntiWarping(Tool):
         if self._AsCapsule:
             s_p = global_container_stack.getProperty("support_type", "value")
             if s_p ==  'buildplate' :
-                Message(text = "Info modification support_type new value : everywhere", title = catalog.i18nc("@info:title", "Custom Supports Cylinder")).show()
+                Message(text = "Info modification support_type new value : everywhere", title = catalog.i18nc("@info:title", "Tab Anti Warping")).show()
                 Logger.log('d', 'support_type different : ' + str(s_p))
                 # Define support_type=everywhere
                 global_container_stack.setProperty("support_type", "value", 'everywhere')
-
+                
             
         # Define support_xy_distance
         definition = stack.getSettingDefinition("support_xy_distance")
@@ -214,11 +222,20 @@ class TabAntiWarping(Tool):
         _xy_distance = extruder.getProperty("support_xy_distance", "value")
         if self._UseOffset !=  _xy_distance :
             _msg = "New value : %8.3f" % (self._UseOffset) 
-            Message(text = "Info modification support_xy_distance :\nNew value : %8.3f" % (self._UseOffset), title = catalog.i18nc("@info:title", "tab anti wraping")).show()
+            Message(text = "Info modification support_xy_distance :\nNew value : %8.3f" % (self._UseOffset), title = catalog.i18nc("@info:title", "Tab Anti Warping")).show()
             Logger.log('d', 'support_xy_distance different : ' + str(_xy_distance))
             # Define support_xy_distance
             extruder.setProperty("support_xy_distance", "value", self._UseOffset)
-        
+ 
+        if self._Nb_Layer >1 :
+            s_p = int(extruder.getProperty("support_infill_rate", "value"))
+            Logger.log('d', 'support_infill_rate actual : ' + str(s_p))
+            if s_p < 99 :
+                Message(text = "Info modification support_infill_rate new value : 100%", title = catalog.i18nc("@info:title", "Tab Anti Warping")).show()
+                Logger.log('d', 'support_infill_rate different : ' + str(s_p))
+                # Define support_infill_rate=100%
+                extruder.setProperty("support_infill_rate", "value", 100)
+                
         
         
         op = GroupedOperation()
@@ -276,7 +293,10 @@ class TabAntiWarping(Tool):
         r = size / 2
         # First layer length
         sup = -lg + He
-        sup_c = -lg + (He * 3)
+        if self._Nb_Layer >1 :
+            sup_c = -lg + (He * 2)
+        else:
+            sup_c = -lg + (He * 3)
         l = -lg
         rng = int(360 / nb)
         ang = math.radians(nb)
@@ -407,6 +427,30 @@ class TabAntiWarping(Tool):
         self._UseSize = s_value
         self._preferences.setValue("customsupportcylinder/p_size", s_value)
  
+    def getNLayer(self) -> int:
+        """ 
+            return: golabl _Nb_Layer
+        """           
+        return self._Nb_Layer
+  
+    def setNLayer(self, NLayer: str) -> None:
+        """
+        param NLayer: NLayer as integer >1
+        """
+ 
+        try:
+            i_value = int(NLayer)
+            
+        except ValueError:
+            return
+ 
+        if i_value < 1:
+            return
+            
+        Logger.log('d', 'i_value : ' + str(i_value))        
+        self._Nb_Layer = i_value
+        self._preferences.setValue("customsupportcylinder/nb_layer", i_value)
+        
     def getSOffset(self) -> float:
         """ 
             return: golabl _UseOffset  in mm.
