@@ -56,7 +56,7 @@ Item
         Label
         {
             height: UM.Theme.getSize("setting_control").height;
-            text: "Number of layer";
+            text: "Number of layers";
             font: UM.Theme.getFont("default");
             color: UM.Theme.getColor("text");
             verticalAlignment: Text.AlignVCenter;
@@ -113,11 +113,10 @@ Item
             height: UM.Theme.getSize("setting_control").height;
             style: UM.Theme.styles.text_field;
             text: UM.ActiveTool.properties.getValue("NLayer")
-            validator: DoubleValidator
+            validator: IntValidator
             {
-				decimals: 0
-				bottom: 1.0
-				locale: "en_US"
+				bottom: 1
+				top: 10
             }
 
             onEditingFinished:
