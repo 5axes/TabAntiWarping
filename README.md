@@ -81,8 +81,8 @@ The new design should offer a bevel on the outsite of the tab to be much more ea
 
 ### Update V1.2.0
 
-New option "Number of layer" to tab with several Layer  height. 
+New option "Number of layer" to create tabs with several layer height. 
 
 ![Menu](./images/menu.jpg)
 
-If the number of layer is > to 1 then the Support density is automaticaly set to 100%
+If the number of layer is bigger than 1, then the *Support Density* is automaticaly set to 100%
