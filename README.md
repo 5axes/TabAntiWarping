@@ -65,3 +65,24 @@ This new design has been integrated following the request of [Reality4DEvolution
 
 The new design should offer a bevel on the outsite of the tab to be much more easy to remove, as you can get the scraper under it, and start to remove the project much easier.
 ![Scrapper](./images/test-capsule.jpg)
+
+### Update V1.1.0
+
+New option "Define as Capsule" to create a Capsule style tab. 
+
+![Menu](./images/menu.png)
+
+This new design has been integrated following the request of [Reality4DEvolution](https://github.com/Reality4DEvolution) in this post : [issues#7](https://github.com/5axes/TabAntiWarping/issues/7) 
+
+![Capsule design](./images/capsule.png)
+
+The new design should offer a bevel on the outsite of the tab to be much more easy to remove, as you can get the scraper under it, and start to remove the project much easier.
+![Scrapper](./images/test-capsule.jpg)
+
+### Update V1.2.0
+
+New option "Number of layer" to tab with several Layer  height. 
+
+![Menu](./images/menu.jpg)
+
+If the number of layer is > to 1 then the Support density is automaticaly set to 100%
