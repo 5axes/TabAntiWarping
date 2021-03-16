@@ -68,7 +68,7 @@ The new design should offer a bevel on the outsite of the tab to be much more ea
 
 ### Update V1.2.0
 
-New option "Number of layers" to create tabs with several layers height. 
+New option "Number of layers" to create tabs with several layers height. Discussion in this post : [Discussion #8](https://github.com/5axes/TabAntiWarping/discussions/8#).
 
 ![Menu](./images/menu.jpg)
 
