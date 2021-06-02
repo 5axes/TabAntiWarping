@@ -7,6 +7,7 @@
 # V1.0.1 11-11-2020 Change the default height _layer_h = _layer_h * 1.2
 # V1.1.0 19-02-2021 Add Capsule option on Reality4DEvolution idea   Change supported release from API 7 (Cura 4.4)
 # V1.2.0 11-03-2021 Add option Number of layer
+# V1.2.1 11-06-2021 Check Cura version
 #------------------------------------------------------------------------------------------------------------------
 
 from PyQt5.QtCore import Qt, QTimer
@@ -23,6 +24,9 @@ from UM.Mesh.MeshBuilder import MeshBuilder
 from UM.Scene.Selection import Selection
 
 from cura.PickingPass import PickingPass
+
+from cura.CuraVersion import CuraVersion  # type: ignore
+from UM.Version import Version
 
 from UM.Operations.GroupedOperation import GroupedOperation
 from UM.Operations.AddSceneNodeOperation import AddSceneNodeOperation
@@ -61,6 +65,25 @@ class TabAntiWarping(Tool):
         self._selection_pass = None
 
         # self._i18n_catalog = None
+        
+        self.Major=1
+        self.Minor=0
+
+        # Logger.log('d', "Info Version CuraVersion --> " + str(Version(CuraVersion)))
+        Logger.log('d', "Info CuraVersion --> " + str(CuraVersion))
+        
+        # Test version for futur release 4.9
+        if "master" in CuraVersion or "beta" in CuraVersion or "BETA" in CuraVersion:
+            # Master is always a developement version.
+            self.Major=4
+            self.Minor=9
+
+        else:
+            try:
+                self.Major = int(CuraVersion.split(".")[0])
+                self.Minor = int(CuraVersion.split(".")[1])
+            except:
+                pass
         
         self.setExposedProperties("SSize", "SOffset", "SCapsule", "NLayer")
         
