@@ -8,6 +8,7 @@
 # V1.1.0 19-02-2021 Add Capsule option on Reality4DEvolution idea   Change supported release from API 7 (Cura 4.4)
 # V1.2.0 11-03-2021 Add option Number of layer
 # V1.2.1 11-06-2021 Check Cura version
+# V1.2.2 04-11-2021 Update Cura 4.12
 #------------------------------------------------------------------------------------------------------------------
 
 from PyQt5.QtCore import Qt, QTimer
