@@ -1,6 +1,11 @@
-#------------------------------------------------------------------------------------------------------------------
-# Initial Copyright (c) 2018 Aldo Hoeben fieldOfView
+#--------------------------------------------------------------------------------------------
+# Initial Copyright(c) 2018 Ultimaker B.V.
+# Copyright (c) 2022 5axes
+#--------------------------------------------------------------------------------------------
 # Based on the SupportBlocker plugin by Ultimaker B.V., and licensed under LGPLv3 or higher.
+#
+#  https://github.com/Ultimaker/Cura/tree/master/plugins/SupportEraser
+#
 # All modification 5@xes
 # First release 05-22-2020  First proof of concept
 #------------------------------------------------------------------------------------------------------------------
@@ -9,10 +14,18 @@
 # V1.2.0 11-03-2021 Add option Number of layer
 # V1.2.1 11-06-2021 Check Cura version
 # V1.2.2 04-11-2021 Update Cura 4.12
+#
+# V1.3.0 03-05-2022 Update for Cura 5.0
 #------------------------------------------------------------------------------------------------------------------
 
-from PyQt5.QtCore import Qt, QTimer
-from PyQt5.QtWidgets import QApplication
+VERSION_QT5 = False
+try:
+    from PyQt6.QtCore import Qt, QTimer
+    from PyQt6.QtWidgets import QApplication
+except ImportError:
+    from PyQt5.QtCore import Qt, QTimer
+    from PyQt5.QtWidgets import QApplication
+    VERSION_QT5 = True
 
 from cura.CuraApplication import CuraApplication
 
@@ -58,9 +71,14 @@ class TabAntiWarping(Tool):
         self._UseOffset = 0.0
         self._AsCapsule = False
         self._Nb_Layer = 1
-        
+
+
         # Shortcut
-        self._shortcut_key = Qt.Key_I
+        if not VERSION_QT5:
+            self._shortcut_key = Qt.Key.Key_I
+        else:
+            self._shortcut_key = Qt.Key_I
+            
         self._controller = self.getController()
 
         self._selection_pass = None
@@ -125,7 +143,10 @@ class TabAntiWarping(Tool):
     def event(self, event):
         super().event(event)
         modifiers = QApplication.keyboardModifiers()
-        ctrl_is_active = modifiers & Qt.ControlModifier
+        if not VERSION_QT5:
+            ctrl_is_active = modifiers & Qt.KeyboardModifier.ControlModifier
+        else:
+            ctrl_is_active = modifiers & Qt.ControlModifier
 
         if event.type == Event.MousePressEvent and MouseEvent.LeftButton in event.buttons and self._controller.getToolsEnabled():
             if ctrl_is_active:
@@ -185,10 +206,11 @@ class TabAntiWarping(Tool):
         # This function can be triggered in the middle of a machine change, so do not proceed if the machine change
         # has not done yet.
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
-        extruder = global_container_stack.extruderList[int(_id_ex)]    
-        _layer_h_i = extruder.getProperty("layer_height_0", "value")
-        _layer_height = extruder.getProperty("layer_height", "value")
-        _line_w = extruder.getProperty("line_width", "value")
+        #extruder = global_container_stack.extruderList[int(_id_ex)] 
+        extruder_stack = CuraApplication.getInstance().getExtruderManager().getActiveExtruderStacks()[0]        
+        _layer_h_i = extruder_stack.getProperty("layer_height_0", "value")
+        _layer_height = extruder_stack.getProperty("layer_height", "value")
+        _line_w = extruder_stack.getProperty("line_width", "value")
         # Logger.log('d', 'layer_height_0 : ' + str(_layer_h_i))
         _layer_h = (_layer_h_i * 1.2) + (_layer_height * (self._Nb_Layer -1) )
         _line_w = _line_w * 1.2 
@@ -241,27 +263,28 @@ class TabAntiWarping(Tool):
         # Fix some settings in Cura to get a better result
         id_ex=0
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
-        extruder = global_container_stack.extruderList[int(id_ex)]    
+        extruder_stack = CuraApplication.getInstance().getExtruderManager().getActiveExtruderStacks()[0]
+        #extruder = global_container_stack.extruderList[int(id_ex)]    
         
         # hop to fix it in a futur release
         # https://github.com/Ultimaker/Cura/issues/9882
         # if self.Major < 5 or ( self.Major == 5 and self.Minor < 1 ) :
-        _xy_distance = extruder.getProperty("support_xy_distance", "value")
+        _xy_distance = extruder_stack.getProperty("support_xy_distance", "value")
         if self._UseOffset !=  _xy_distance :
             _msg = "New value : %8.3f" % (self._UseOffset) 
             Message(text = "Info modification current profile support_xy_distance parameter\nNew value : %8.3f" % (self._UseOffset), title = catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
             Logger.log('d', 'support_xy_distance different : ' + str(_xy_distance))
             # Define support_xy_distance
-            extruder.setProperty("support_xy_distance", "value", self._UseOffset)
+            extruder_stack.setProperty("support_xy_distance", "value", self._UseOffset)
  
         if self._Nb_Layer >1 :
-            s_p = int(extruder.getProperty("support_infill_rate", "value"))
+            s_p = int(extruder_stack.getProperty("support_infill_rate", "value"))
             Logger.log('d', 'support_infill_rate actual : ' + str(s_p))
             if s_p < 99 :
                 Message(text = "Info modification current profile support_infill_rate parameter\nNew value : 100%", title = catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
                 Logger.log('d', 'support_infill_rate different : ' + str(s_p))
                 # Define support_infill_rate=100%
-                extruder.setProperty("support_infill_rate", "value", 100)
+                extruder_stack.setProperty("support_infill_rate", "value", 100)
                 
         
         
