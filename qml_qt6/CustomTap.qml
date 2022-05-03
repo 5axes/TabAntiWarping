@@ -125,7 +125,7 @@ Item
             }
         }		
     }
-	CheckBox
+	UM.CheckBox
 	{
 		id: useCapsuleCheckbox;
 		anchors.top: textfields.bottom;
