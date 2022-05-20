@@ -91,12 +91,11 @@ class TabAntiWarping(Tool):
         # Logger.log('d', "Info Version CuraVersion --> " + str(Version(CuraVersion)))
         Logger.log('d', "Info CuraVersion --> " + str(CuraVersion))
         
-        # Test version for futur release 4.9
-        if "master" in CuraVersion or "beta" in CuraVersion or "BETA" in CuraVersion:
-            # Master is always a developement version.
+        # Test version for Cura Master
+        # https://github.com/smartavionics/Cura
+        if "master" in CuraVersion :
             self.Major=4
-            self.Minor=9
-
+            self.Minor=20
         else:
             try:
                 self.Major = int(CuraVersion.split(".")[0])
