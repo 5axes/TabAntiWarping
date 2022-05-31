@@ -33,7 +33,7 @@ Item
         anchors.top: parent.top
 
         columns: 2
-        flow: Grid.TopToBottom
+        flow: Grid.LeftToRight
         spacing: Math.round(UM.Theme.getSize("default_margin").width / 2)
 
         Label
@@ -47,36 +47,6 @@ Item
             width: Math.ceil(contentWidth) //Make sure that the grid cells have an integer width.
         }
 
-        Label
-        {
-            height: UM.Theme.getSize("setting_control").height
-            text: "X/Y Distance"
-            font: UM.Theme.getFont("default")
-            color: UM.Theme.getColor("text")
-            verticalAlignment: Text.AlignVCenter
-            renderType: Text.NativeRendering
-            width: Math.ceil(contentWidth) //Make sure that the grid cells have an integer width.
-        }
-
-        Label
-        {
-            height: UM.Theme.getSize("setting_control").height
-            text: "Number of layers"
-            font: UM.Theme.getFont("default")
-            color: UM.Theme.getColor("text")
-            verticalAlignment: Text.AlignVCenter
-            renderType: Text.NativeRendering
-            width: Math.ceil(contentWidth) //Make sure that the grid cells have an integer width.
-        }
-
-		UM.CheckBox
-		{
-			id: useCapsuleCheckbox
-			text: catalog.i18nc("@option:check","Define as Capsule")
-			checked: UM.ActiveTool.properties.getValue("SCapsule")
-			onClicked: UM.ActiveTool.setProperty("SCapsule", checked)
-		}
-		
 		UM.TextFieldWithUnit
         {
             id: sizeTextField
@@ -98,6 +68,17 @@ Item
             }
         }
 		
+        Label
+        {
+            height: UM.Theme.getSize("setting_control").height
+            text: "X/Y Distance"
+            font: UM.Theme.getFont("default")
+            color: UM.Theme.getColor("text")
+            verticalAlignment: Text.AlignVCenter
+            renderType: Text.NativeRendering
+            width: Math.ceil(contentWidth) //Make sure that the grid cells have an integer width.
+        }
+
 		UM.TextFieldWithUnit
         {
             id: offsetTextField
@@ -117,6 +98,17 @@ Item
                 UM.ActiveTool.setProperty("SOffset", modified_text)
             }
         }
+		
+        Label
+        {
+            height: UM.Theme.getSize("setting_control").height
+            text: "Number of layers"
+            font: UM.Theme.getFont("default")
+            color: UM.Theme.getColor("text")
+            verticalAlignment: Text.AlignVCenter
+            renderType: Text.NativeRendering
+            width: Math.ceil(contentWidth) //Make sure that the grid cells have an integer width.
+        }
 
 		UM.TextFieldWithUnit
         {
@@ -134,8 +126,15 @@ Item
             {
                 UM.ActiveTool.setProperty("NLayer", text)
             }
-        }		
-    
+        }	
+		UM.CheckBox
+		{
+			id: useCapsuleCheckbox
+			text: catalog.i18nc("@option:check","Define as Capsule")
+			checked: UM.ActiveTool.properties.getValue("SCapsule")
+			onClicked: UM.ActiveTool.setProperty("SCapsule", checked)
+		}
+
 		UM.SimpleButton
 		{
 			id: helpButton
