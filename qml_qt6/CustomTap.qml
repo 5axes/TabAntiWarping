@@ -20,6 +20,9 @@ Item
     width: childrenRect.width
     height: childrenRect.height
     UM.I18nCatalog { id: catalog; name: "cura"}
+	
+	property string getlinkCurrent: "https://github.com/5axes/TabAntiWarping/wiki/How-to-use-it"
+	property int localwidth:70
 
 
     Grid
@@ -65,11 +68,19 @@ Item
             renderType: Text.NativeRendering
             width: Math.ceil(contentWidth) //Make sure that the grid cells have an integer width.
         }
+
+		UM.CheckBox
+		{
+			id: useCapsuleCheckbox
+			text: catalog.i18nc("@option:check","Define as Capsule")
+			checked: UM.ActiveTool.properties.getValue("SCapsule")
+			onClicked: UM.ActiveTool.setProperty("SCapsule", checked)
+		}
 		
 		UM.TextFieldWithUnit
         {
             id: sizeTextField
-            width: UM.Theme.getSize("setting_control").width
+            width: localwidth
             height: UM.Theme.getSize("setting_control").height
             unit: "mm"
             text: UM.ActiveTool.properties.getValue("SSize")
@@ -90,7 +101,7 @@ Item
 		UM.TextFieldWithUnit
         {
             id: offsetTextField
-            width: UM.Theme.getSize("setting_control").width
+            width: localwidth
             height: UM.Theme.getSize("setting_control").height
             unit: "mm"
             text: UM.ActiveTool.properties.getValue("SOffset")
@@ -110,7 +121,7 @@ Item
 		UM.TextFieldWithUnit
         {
             id: numberlayerTextField
-            width: UM.Theme.getSize("setting_control").width
+            width: localwidth
             height: UM.Theme.getSize("setting_control").height
             text: UM.ActiveTool.properties.getValue("NLayer")
             validator: IntValidator
@@ -124,16 +135,20 @@ Item
                 UM.ActiveTool.setProperty("NLayer", text)
             }
         }		
-    }
-	UM.CheckBox
-	{
-		id: useCapsuleCheckbox
-		anchors.top: textfields.bottom
-		anchors.topMargin: UM.Theme.getSize("default_margin").height
-		anchors.left: parent.left
-		text: catalog.i18nc("@option:check","Define as Capsule")
-		visible: abutmentButton.checked
-		checked: UM.ActiveTool.properties.getValue("SCapsule")
-		onClicked: UM.ActiveTool.setProperty("SCapsule", checked)
+    
+		UM.SimpleButton
+		{
+			id: helpButton
+			width: UM.Theme.getSize("save_button_specs_icons").width
+			height: UM.Theme.getSize("save_button_specs_icons").height
+			iconSource: UM.Theme.getIcon("Help")
+			hoverColor: UM.Theme.getColor("small_button_text_hover")
+			color:  UM.Theme.getColor("small_button_text")
+			
+			onClicked:
+			{
+			Qt.openUrlExternally(getlinkCurrent)
+			}
+		}
 	}
 }
