@@ -17,6 +17,7 @@
 #
 # V1.3.0 03-05-2022 Update for Cura 5.0
 # V1.3.1 31-05-2022 Add help button in V5
+# V1.3.2 02-06-2022 global_stack = application.getGlobalContainerStack()
 #------------------------------------------------------------------------------------------------------------------
 
 VERSION_QT5 = False
@@ -275,7 +276,7 @@ class TabAntiWarping(Tool):
             Message(text = "Info modification current profile support_xy_distance parameter\nNew value : %8.3f" % (self._UseOffset), title = catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
             Logger.log('d', 'support_xy_distance different : ' + str(_xy_distance))
             # Define support_xy_distance
-            extruder_stack.setProperty("support_xy_distance", "value", self._UseOffset)
+            global_container_stack.setProperty("support_xy_distance", "value", self._UseOffset)
  
         if self._Nb_Layer >1 :
             s_p = int(extruder_stack.getProperty("support_infill_rate", "value"))
@@ -284,7 +285,7 @@ class TabAntiWarping(Tool):
                 Message(text = "Info modification current profile support_infill_rate parameter\nNew value : 100%", title = catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
                 Logger.log('d', 'support_infill_rate different : ' + str(s_p))
                 # Define support_infill_rate=100%
-                extruder_stack.setProperty("support_infill_rate", "value", 100)
+                global_container_stack.setProperty("support_infill_rate", "value", 100)
                 
         
         
