@@ -221,11 +221,11 @@ class TabAntiWarping(Tool):
         _line_w = _line_w * 1.2 
         
         if self._AsCapsule:
-             # Capsule creation Diameter , Increment angle 4°, length, layer_height_0*1.2 , line_width
-            mesh = self._createCapsule(self._UseSize,4,_long,_layer_h,_line_w)       
+             # Capsule creation Diameter , Increment angle 10°, length, layer_height_0*1.2 , line_width
+            mesh = self._createCapsule(self._UseSize,10,_long,_layer_h,_line_w)       
         else:
-            # Cylinder creation Diameter , Increment angle 4°, length, layer_height_0*1.2
-            mesh = self._createPastille(self._UseSize,4,_long,_layer_h)
+            # Cylinder creation Diameter , Increment angle 10°, length, layer_height_0*1.2
+            mesh = self._createPastille(self._UseSize,10,_long,_layer_h)
         
         node.setMeshData(mesh.build())
 
