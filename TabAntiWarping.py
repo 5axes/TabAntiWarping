@@ -139,7 +139,8 @@ class TabAntiWarping(Tool):
 
         self._preferences.addPreference("customsupportcylinder/nb_layer", 1)
         # convert as float to avoid further issue
-        self._Nb_Layer = int(self._preferences.getValue("customsupportcylinder/nb_layer"))        
+        self._Nb_Layer = int(self._preferences.getValue("customsupportcylinder/nb_layer"))       
+     
                 
     def event(self, event):
         super().event(event)
@@ -208,7 +209,10 @@ class TabAntiWarping(Tool):
         # has not done yet.
         global_container_stack = CuraApplication.getInstance().getGlobalContainerStack()
         #extruder = global_container_stack.extruderList[int(_id_ex)] 
-        extruder_stack = CuraApplication.getInstance().getExtruderManager().getActiveExtruderStacks()[0]        
+        extruder_stack = CuraApplication.getInstance().getExtruderManager().getActiveExtruderStacks()[0]     
+        self._Extruder_count=global_container_stack.getProperty("machine_extruder_count", "value") 
+        #Logger.log('d', "Info Extruder_count --> " + str(self._Extruder_count))   
+        
         _layer_h_i = extruder_stack.getProperty("layer_height_0", "value")
         _layer_height = extruder_stack.getProperty("layer_height", "value")
         _line_w = extruder_stack.getProperty("line_width", "value")
@@ -276,7 +280,10 @@ class TabAntiWarping(Tool):
             Message(text = "Info modification current profile support_xy_distance parameter\nNew value : %8.3f" % (self._UseOffset), title = catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
             Logger.log('d', 'support_xy_distance different : ' + str(_xy_distance))
             # Define support_xy_distance
-            global_container_stack.setProperty("support_xy_distance", "value", self._UseOffset)
+            if self._Extruder_count > 1 :
+                global_container_stack.setProperty("support_xy_distance", "value", self._UseOffset)
+            else:
+                extruder_stack.setProperty("support_xy_distance", "value", self._UseOffset)
  
         if self._Nb_Layer >1 :
             s_p = int(extruder_stack.getProperty("support_infill_rate", "value"))
@@ -285,7 +292,10 @@ class TabAntiWarping(Tool):
                 Message(text = "Info modification current profile support_infill_rate parameter\nNew value : 100%", title = catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
                 Logger.log('d', 'support_infill_rate different : ' + str(s_p))
                 # Define support_infill_rate=100%
-                global_container_stack.setProperty("support_infill_rate", "value", 100)
+                if self._Extruder_count > 1 :
+                    global_container_stack.setProperty("support_infill_rate", "value", 100)
+                else:
+                    extruder_stack.setProperty("support_infill_rate", "value", 100)
                 
         
         
