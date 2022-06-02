@@ -18,6 +18,7 @@
 # V1.3.0 03-05-2022 Update for Cura 5.0
 # V1.3.1 31-05-2022 Add help button in V5
 # V1.3.2 02-06-2022 global_stack = application.getGlobalContainerStack()
+# V1.3.3 02-06-2022 add translated parameter in the Warning message
 #------------------------------------------------------------------------------------------------------------------
 
 VERSION_QT5 = False
@@ -59,7 +60,9 @@ from UM.Tool import Tool
 
 from UM.i18n import i18nCatalog
 catalog = i18nCatalog("cura")
-
+i18n_cura_catalog = i18nCatalog("cura")
+i18n_catalog = i18nCatalog("fdmprinter.def.json")
+i18n_extrud_catalog = i18nCatalog("fdmextruder.def.json")
 
 import math
 import numpy
@@ -249,15 +252,19 @@ class TabAntiWarping(Tool):
         new_instance.resetState()  # Ensure that the state is not seen as a user state.
         settings.addInstance(new_instance)
  
+        # Define support_type
         if self._AsCapsule:
-            s_p = global_container_stack.getProperty("support_type", "value")
+            key="support_type"
+            s_p = global_container_stack.getProperty(key, "value")
             if s_p ==  'buildplate' :
-                Message(text = "Info modification current profile support_type parameter\nNew value : everywhere", title = catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
+                definition_key=key + " label"
+                untranslated_label=extruder_stack.getProperty(key,"label")
+                translated_label=i18n_catalog.i18nc(definition_key, untranslated_label) 
+                Message(text = "Info modification current profile '" + translated_label  + "' parameter\nNew value : everywhere", title = i18n_cura_catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
                 Logger.log('d', 'support_type different : ' + str(s_p))
                 # Define support_type=everywhere
-                global_container_stack.setProperty("support_type", "value", 'everywhere')
-                
-            
+                global_container_stack.setProperty(key, "value", 'everywhere')
+               
         # Define support_xy_distance
         definition = stack.getSettingDefinition("support_xy_distance")
         new_instance = SettingInstance(definition, settings)
@@ -274,10 +281,14 @@ class TabAntiWarping(Tool):
         # hop to fix it in a futur release
         # https://github.com/Ultimaker/Cura/issues/9882
         # if self.Major < 5 or ( self.Major == 5 and self.Minor < 1 ) :
-        _xy_distance = extruder_stack.getProperty("support_xy_distance", "value")
+        key="support_xy_distance"
+        _xy_distance = extruder_stack.getProperty(key, "value")
         if self._UseOffset !=  _xy_distance :
-            _msg = "New value : %8.3f" % (self._UseOffset) 
-            Message(text = "Info modification current profile support_xy_distance parameter\nNew value : %8.3f" % (self._UseOffset), title = catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
+            _msg = "New value : %8.3f" % (self._UseOffset)          
+            definition_key=key + " label"
+            untranslated_label=extruder_stack.getProperty(key,"label")
+            translated_label=i18n_catalog.i18nc(definition_key, untranslated_label) 
+            Message(text = "Info modification current profile '%s' parameter\nNew value : %8.3f" % (translated_label, self._UseOffset), title = i18n_cura_catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
             Logger.log('d', 'support_xy_distance different : ' + str(_xy_distance))
             # Define support_xy_distance
             if self._Extruder_count > 1 :
@@ -286,10 +297,14 @@ class TabAntiWarping(Tool):
                 extruder_stack.setProperty("support_xy_distance", "value", self._UseOffset)
  
         if self._Nb_Layer >1 :
-            s_p = int(extruder_stack.getProperty("support_infill_rate", "value"))
+            key="support_infill_rate"
+            s_p = int(extruder_stack.getProperty(key, "value"))
             Logger.log('d', 'support_infill_rate actual : ' + str(s_p))
             if s_p < 99 :
-                Message(text = "Info modification current profile support_infill_rate parameter\nNew value : 100%", title = catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
+                definition_key=key + " label"
+                untranslated_label=extruder_stack.getProperty(key,"label")
+                translated_label=i18n_catalog.i18nc(definition_key, untranslated_label)                
+                Message(text = "Info modification current profile '" + translated_label + "' parameter\nNew value : 100%" , title = i18n_cura_catalog.i18nc("@info:title", "Warning ! Tab Anti Warping")).show()
                 Logger.log('d', 'support_infill_rate different : ' + str(s_p))
                 # Define support_infill_rate=100%
                 if self._Extruder_count > 1 :
