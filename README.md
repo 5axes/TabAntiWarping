@@ -64,6 +64,7 @@ This new design has been integrated following the request of [Reality4DEvolution
 ![Capsule design](./images/capsule.png)
 
 The new design should offer a bevel on the outsite of the tab to be much more easy to remove, as you can get the scraper under it, and start to remove the project much easier.
+
 ![Scrapper](./images/test-capsule.jpg)
 
 ### Update V1.2.0
