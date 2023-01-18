@@ -27,6 +27,36 @@ msgctxt "@info:tooltip"
 msgid "Add Tab Anti Warping"
 msgstr ""
 
+#: tabantiwarping.py:
+msgctxt "@info:title"
+msgid "Tab Anti Warping"
+msgstr ""
+
+#: tabantiwarping.py:
+msgctxt "@info:title"
+msgid "Warning ! Tab Anti Warping"
+msgstr ""
+
+#: tabantiwarping.py:
+msgctxt "@info:label"
+msgid "Info modification current profile '"
+msgstr ""
+
+#: tabantiwarping.py:
+msgctxt "@info:label"
+msgid "' parameter\nNew value : "
+msgstr ""
+
+#: tabantiwarping.py:
+msgctxt "@info:label"
+msgid "100%"
+msgstr ""
+
+#: tabantiwarping.py:
+msgctxt "@info:label"
+msgid "Everywhere"
+msgstr ""
+
 #: qml_qt6/CustomTab.qml: qml_qt5/CustomTab.qml:
 msgctxt "@label"
 msgid "Size"

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Custom Support Cylinder\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-11 15:10+0000\n"
-"PO-Revision-Date: 2023-01-18 19:18+0200\n"
+"PO-Revision-Date: 2023-01-19 00:28+0200\n"
 "Last-Translator: 5axes <5axes@free.fr>\n"
 "Language-Team: 5axes\n"
 "Language: fr\n"
@@ -26,6 +26,36 @@ msgstr "Pastille Anti-Décollement"
 msgctxt "@info:tooltip"
 msgid "Add Tab Anti Warping"
 msgstr "Ajout de Pastille Anti-Décollement"
+
+#: tabantiwarping.py:
+msgctxt "@info:title"
+msgid "Tab Anti Warping"
+msgstr "Pastille Anti-Décollement"
+
+#: tabantiwarping.py:
+msgctxt "@info:title"
+msgid "Warning ! Tab Anti Warping"
+msgstr "Attention ! Pastille Anti-Décollement"
+
+#: tabantiwarping.py:
+msgctxt "@info:label"
+msgid "Info modification current profile '"
+msgstr "Information modification du profil actuel Paramètre '"
+
+#: tabantiwarping.py:
+msgctxt "@info:label"
+msgid "' parameter\nNew value : "
+msgstr "'\nNouvelle Valeur : "
+
+#: tabantiwarping.py:
+msgctxt "@info:label"
+msgid "100%"
+msgstr "100%"
+
+#: tabantiwarping.py:
+msgctxt "@info:label"
+msgid "Everywhere"
+msgstr "Partout"
 
 #: qml_qt6/CustomTab.qml: qml_qt5/CustomTab.qml:
 msgctxt "@label"
