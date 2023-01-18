@@ -17,7 +17,9 @@ Test with a diameter of 20mm and Support X/Y Distance=0.2mm. To keep a support w
 ## Installation
 First, make sure your Cura version is  4.4 or newer.
 
-Manual Install Download & extract the repository as ZIP or clone it. Copy the files/plugins/TabAntiWarping directory to:
+### Manual Install 
+
+[Download](https://github.com/5axes/TabAntiWarping/archive/refs/heads/master.zip) & extract the repository as ZIP or clone it. Copy the files/plugins/TabAntiWarping directory to:
 
 on Windows: [Cura installation folder]/plugins/TabAntiWarping
 
