@@ -19,6 +19,7 @@
 # V1.3.1 31-05-2022 Add help button in V5
 # V1.3.2 02-06-2022 global_stack = application.getGlobalContainerStack()
 # V1.3.3 02-06-2022 add translated parameter in the Warning message
+# V1.4.0 18-01-2023 Init Plugin Translation
 #------------------------------------------------------------------------------------------------------------------
 
 VERSION_QT5 = False
@@ -58,14 +59,25 @@ from cura.Scene.CuraSceneNode import CuraSceneNode
 from UM.Scene.ToolHandle import ToolHandle
 from UM.Tool import Tool
 
+import math
+import numpy
+import os.path
+
+from UM.Resources import Resources
 from UM.i18n import i18nCatalog
-catalog = i18nCatalog("cura")
+
 i18n_cura_catalog = i18nCatalog("cura")
 i18n_catalog = i18nCatalog("fdmprinter.def.json")
 i18n_extrud_catalog = i18nCatalog("fdmextruder.def.json")
 
-import math
-import numpy
+Resources.addSearchPath(
+    os.path.join(os.path.abspath(os.path.dirname(__file__)))
+)  # Plugin translation file import
+
+catalog = i18nCatalog("tabantiwarping")
+
+if i18n_catalog.hasTranslationLoaded():
+    Logger.log("i", "Tab Anti Warping Plugin translation loaded!")
 
 class TabAntiWarping(Tool):
     def __init__(self):
@@ -77,7 +89,6 @@ class TabAntiWarping(Tool):
         self._AsCapsule = False
         self._Nb_Layer = 1
 
-
         # Shortcut
         if not VERSION_QT5:
             self._shortcut_key = Qt.Key.Key_I
@@ -87,8 +98,6 @@ class TabAntiWarping(Tool):
         self._controller = self.getController()
 
         self._selection_pass = None
-
-        # self._i18n_catalog = None
         
         self.Major=1
         self.Minor=0

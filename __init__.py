@@ -1,4 +1,4 @@
-# Copyright (c) 2022 5@xes
+# Copyright (c) 2023 5@xes
 # Based on the SupportBlocker plugin by Ultimaker B.V., and licensed under LGPLv3 or higher.
 
 VERSION_QT5 = False
@@ -10,7 +10,7 @@ except ImportError:
 from . import TabAntiWarping
 
 from UM.i18n import i18nCatalog
-i18n_catalog = i18nCatalog("cura")
+i18n_catalog = i18nCatalog("tabantiwarping")
 
 def getMetaData():
     if not VERSION_QT5:
