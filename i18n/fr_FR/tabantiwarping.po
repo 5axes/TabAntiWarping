@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Custom Support Cylinder\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-11 15:10+0000\n"
-"PO-Revision-Date: 2023-01-19 00:28+0200\n"
+"POT-Creation-Date: 2023-01-26 12:31+0000\n"
+"PO-Revision-Date: 2023-01-26 13:32+0200\n"
 "Last-Translator: 5axes <5axes@free.fr>\n"
 "Language-Team: 5axes\n"
 "Language: fr\n"
@@ -16,6 +16,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Virtaal 0.7.1\n"
+
+#: TabAntiWarping.py:272 TabAntiWarping.py:301 TabAntiWarping.py:318
+msgctxt "@info:label"
+msgid "Info modification current profile '"
+msgstr "Information modification du profil actuel Paramètre '"
+
+#: TabAntiWarping.py:272 TabAntiWarping.py:301 TabAntiWarping.py:318
+msgctxt "@info:label"
+msgid ""
+"' parameter\n"
+"New value : "
+msgstr ""
+"'\n"
+"Nouvelle Valeur : "
+
+#: TabAntiWarping.py:272
+msgctxt "@info:label"
+msgid "Everywhere"
+msgstr "Partout"
+
+#: TabAntiWarping.py:273 TabAntiWarping.py:302 TabAntiWarping.py:319
+msgctxt "@info:title"
+msgid "Warning ! Tab Anti Warping"
+msgstr "Attention ! Pastille Anti-Décollement"
+
+#: TabAntiWarping.py:318
+msgctxt "@info:label"
+msgid "100%"
+msgstr "100%"
 
 #: __init__.py:23
 msgctxt "@label"
@@ -27,52 +56,26 @@ msgctxt "@info:tooltip"
 msgid "Add Tab Anti Warping"
 msgstr "Ajout de Pastille Anti-Décollement"
 
-#: tabantiwarping.py:
-msgctxt "@info:title"
-msgid "Tab Anti Warping"
-msgstr "Pastille Anti-Décollement"
-
-#: tabantiwarping.py:
-msgctxt "@info:title"
-msgid "Warning ! Tab Anti Warping"
-msgstr "Attention ! Pastille Anti-Décollement"
-
-#: tabantiwarping.py:
-msgctxt "@info:label"
-msgid "Info modification current profile '"
-msgstr "Information modification du profil actuel Paramètre '"
-
-#: tabantiwarping.py:
-msgctxt "@info:label"
-msgid "' parameter\nNew value : "
-msgstr "'\nNouvelle Valeur : "
-
-#: tabantiwarping.py:
-msgctxt "@info:label"
-msgid "100%"
-msgstr "100%"
-
-#: tabantiwarping.py:
-msgctxt "@info:label"
-msgid "Everywhere"
-msgstr "Partout"
-
-#: qml_qt6/CustomTab.qml: qml_qt5/CustomTab.qml:
+#: qml_qt6/CustomTap.qml:42 qml_qt5/CustomTap.qml:37
 msgctxt "@label"
 msgid "Size"
 msgstr "Taille"
 
-#: qml_qt6/CustomTab.qml: qml_qt5/CustomTab.qml:
+#: qml_qt6/CustomTap.qml:74 qml_qt5/CustomTap.qml:48
 msgctxt "@label"
 msgid "X/Y Distance"
 msgstr "Distance X/Y"
 
-#: qml_qt6/CustomTab.qml: qml_qt5/CustomTab.qml:
+#: qml_qt6/CustomTap.qml:105 qml_qt5/CustomTap.qml:59
 msgctxt "@label"
 msgid "Number of layers"
 msgstr "Nombre de couches"
 
-#: qml_qt6/CustomTab.qml: qml_qt5/CustomTab.qml:
+#: qml_qt6/CustomTap.qml:133 qml_qt5/CustomTap.qml:134
 msgctxt "@option:check"
 msgid "Define as Capsule"
 msgstr "Définir comme Capsule"
+
+#~ msgctxt "@info:title"
+#~ msgid "Tab Anti Warping"
+#~ msgstr "Pastille Anti-Décollement"
