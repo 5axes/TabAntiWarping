@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TabAntiWarping\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-13 12:23+0000\n"
+"POT-Creation-Date: 2023-02-13 14:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,39 +17,39 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: TabAntiWarping.py:273 TabAntiWarping.py:302 TabAntiWarping.py:319
+#: TabAntiWarping.py:266 TabAntiWarping.py:295 TabAntiWarping.py:312
 msgctxt "@info:label"
 msgid "Info modification current profile '"
 msgstr ""
 
-#: TabAntiWarping.py:273 TabAntiWarping.py:302 TabAntiWarping.py:319
+#: TabAntiWarping.py:266 TabAntiWarping.py:295 TabAntiWarping.py:312
 msgctxt "@info:label"
 msgid ""
 "' parameter\n"
 "New value : "
 msgstr ""
 
-#: TabAntiWarping.py:273
+#: TabAntiWarping.py:266
 msgctxt "@info:label"
 msgid "Everywhere"
 msgstr ""
 
-#: TabAntiWarping.py:274 TabAntiWarping.py:303 TabAntiWarping.py:320
+#: TabAntiWarping.py:267 TabAntiWarping.py:296 TabAntiWarping.py:313
 msgctxt "@info:title"
 msgid "Warning ! Tab Anti Warping"
 msgstr ""
 
-#: TabAntiWarping.py:319
+#: TabAntiWarping.py:312
 msgctxt "@info:label"
 msgid "100%"
 msgstr ""
 
-#: __init__.py:23
+#: __init__.py:22
 msgctxt "@label"
 msgid "Tab Anti Warping"
 msgstr ""
 
-#: __init__.py:24
+#: __init__.py:23
 msgctxt "@info:tooltip"
 msgid "Add Tab Anti Warping"
 msgstr ""
