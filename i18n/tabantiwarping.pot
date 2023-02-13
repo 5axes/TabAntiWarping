@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: TabAntiWarping\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-26 12:33+0000\n"
+"POT-Creation-Date: 2023-02-13 12:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,29 +17,29 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: TabAntiWarping.py:272 TabAntiWarping.py:301 TabAntiWarping.py:318
+#: TabAntiWarping.py:273 TabAntiWarping.py:302 TabAntiWarping.py:319
 msgctxt "@info:label"
 msgid "Info modification current profile '"
 msgstr ""
 
-#: TabAntiWarping.py:272 TabAntiWarping.py:301 TabAntiWarping.py:318
+#: TabAntiWarping.py:273 TabAntiWarping.py:302 TabAntiWarping.py:319
 msgctxt "@info:label"
 msgid ""
 "' parameter\n"
 "New value : "
 msgstr ""
 
-#: TabAntiWarping.py:272
+#: TabAntiWarping.py:273
 msgctxt "@info:label"
 msgid "Everywhere"
 msgstr ""
 
-#: TabAntiWarping.py:273 TabAntiWarping.py:302 TabAntiWarping.py:319
+#: TabAntiWarping.py:274 TabAntiWarping.py:303 TabAntiWarping.py:320
 msgctxt "@info:title"
 msgid "Warning ! Tab Anti Warping"
 msgstr ""
 
-#: TabAntiWarping.py:318
+#: TabAntiWarping.py:319
 msgctxt "@info:label"
 msgid "100%"
 msgstr ""
@@ -54,22 +54,22 @@ msgctxt "@info:tooltip"
 msgid "Add Tab Anti Warping"
 msgstr ""
 
-#: qml_qt6/CustomTap.qml:42 qml_qt5/CustomTap.qml:37
+#: qml_qt6/CustomTab.qml:42 qml_qt5/CustomTab.qml:37
 msgctxt "@label"
 msgid "Size"
 msgstr ""
 
-#: qml_qt6/CustomTap.qml:74 qml_qt5/CustomTap.qml:48
+#: qml_qt6/CustomTab.qml:74 qml_qt5/CustomTab.qml:48
 msgctxt "@label"
 msgid "X/Y Distance"
 msgstr ""
 
-#: qml_qt6/CustomTap.qml:105 qml_qt5/CustomTap.qml:59
+#: qml_qt6/CustomTab.qml:105 qml_qt5/CustomTab.qml:59
 msgctxt "@label"
 msgid "Number of layers"
 msgstr ""
 
-#: qml_qt6/CustomTap.qml:133 qml_qt5/CustomTap.qml:134
+#: qml_qt6/CustomTab.qml:133 qml_qt5/CustomTab.qml:134
 msgctxt "@option:check"
 msgid "Define as Capsule"
 msgstr ""
