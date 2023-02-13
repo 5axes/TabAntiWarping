@@ -1,6 +1,6 @@
 #--------------------------------------------------------------------------------------------
 # Initial Copyright(c) 2018 Ultimaker B.V.
-# Copyright (c) 2022 5axes
+# Copyright (c) 2020-2023 5axes
 #--------------------------------------------------------------------------------------------
 # Based on the SupportBlocker plugin by Ultimaker B.V., and licensed under LGPLv3 or higher.
 #
@@ -32,38 +32,32 @@ except ImportError:
     from PyQt5.QtWidgets import QApplication
     VERSION_QT5 = True
 
-from cura.CuraApplication import CuraApplication
-
-from UM.Logger import Logger
-from UM.Message import Message
-from UM.Math.Vector import Vector
-from UM.Tool import Tool
-from UM.Event import Event, MouseEvent
-from UM.Mesh.MeshBuilder import MeshBuilder
-from UM.Scene.Selection import Selection
-
-from cura.PickingPass import PickingPass
-
-from cura.CuraVersion import CuraVersion  # type: ignore
-from UM.Version import Version
-
-from UM.Operations.GroupedOperation import GroupedOperation
-from UM.Operations.AddSceneNodeOperation import AddSceneNodeOperation
-from UM.Operations.RemoveSceneNodeOperation import RemoveSceneNodeOperation
-from cura.Operations.SetParentOperation import SetParentOperation
-
-from UM.Settings.SettingInstance import SettingInstance
-
-from cura.Scene.SliceableObjectDecorator import SliceableObjectDecorator
-from cura.Scene.BuildPlateDecorator import BuildPlateDecorator
-from cura.Scene.CuraSceneNode import CuraSceneNode
-from UM.Scene.ToolHandle import ToolHandle
-from UM.Tool import Tool
-
 import math
 import numpy
 import os.path
 
+
+from cura.CuraVersion import CuraVersion  # type: ignore
+from cura.CuraApplication import CuraApplication
+from cura.Operations.SetParentOperation import SetParentOperation
+from cura.PickingPass import PickingPass
+from cura.Scene.SliceableObjectDecorator import SliceableObjectDecorator
+from cura.Scene.BuildPlateDecorator import BuildPlateDecorator
+from cura.Scene.CuraSceneNode import CuraSceneNode
+
+from UM.Logger import Logger
+from UM.Message import Message
+from UM.Math.Vector import Vector
+from UM.Event import Event, MouseEvent
+from UM.Mesh.MeshBuilder import MeshBuilder
+from UM.Operations.GroupedOperation import GroupedOperation
+from UM.Operations.AddSceneNodeOperation import AddSceneNodeOperation
+from UM.Operations.RemoveSceneNodeOperation import RemoveSceneNodeOperation
+from UM.Scene.Selection import Selection
+from UM.Tool import Tool
+from UM.Settings.SettingInstance import SettingInstance
+
+from UM.Version import Version
 from UM.Resources import Resources
 from UM.i18n import i18nCatalog
 
@@ -120,8 +114,7 @@ class TabAntiWarping(Tool):
         
         self.setExposedProperties("SSize", "SOffset", "SCapsule", "NLayer")
         
-        CuraApplication.getInstance().globalContainerStackChanged.connect(self._updateEnabled)
-        
+        CuraApplication.getInstance().globalContainerStackChanged.connect(self._updateEnabled)        
          
         # Note: if the selection is cleared with this tool active, there is no way to switch to
         # another tool than to reselect an object (by clicking it) because the tool buttons in the

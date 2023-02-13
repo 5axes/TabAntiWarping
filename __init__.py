@@ -1,5 +1,4 @@
-# Copyright (c) 2023 5@xes
-# Based on the SupportBlocker plugin by Ultimaker B.V., and licensed under LGPLv3 or higher.
+# Copyright (c) 2020-2023 5@xes
 
 VERSION_QT5 = False
 try:
