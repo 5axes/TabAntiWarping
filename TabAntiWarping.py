@@ -20,6 +20,7 @@
 # V1.3.2 02-06-2022 global_stack = application.getGlobalContainerStack()
 # V1.3.3 02-06-2022 add translated parameter in the Warning message
 # V1.4.0 18-01-2023 Init Plugin Translation
+# V1.4.1 13-02-2023 Change CustomTap.qml into CustomTab.qml
 #------------------------------------------------------------------------------------------------------------------
 
 VERSION_QT5 = False
