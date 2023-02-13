@@ -323,8 +323,6 @@ class TabAntiWarping(Tool):
                     global_container_stack.setProperty("support_infill_rate", "value", 100)
                 else:
                     extruder_stack.setProperty("support_infill_rate", "value", 100)
-                
-        
         
         op = GroupedOperation()
         # First add node to the scene at the correct position/scale, before parenting, so the support mesh does not get scaled with the parent
@@ -435,7 +433,6 @@ class TabAntiWarping(Tool):
             verts.append([0, l, 0])
             verts.append([r*math.cos(i*ang), l, r*math.sin(i*ang)])
             verts.append([r*math.cos((i+1)*ang), l, r*math.sin((i+1)*ang)]) 
-            
             
         mesh.setVertices(numpy.asarray(verts, dtype=numpy.float32))
 
