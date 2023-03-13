@@ -13,9 +13,9 @@ i18n_catalog = i18nCatalog("tabantiwarping")
 
 def getMetaData():
     if not VERSION_QT5:
-        QmlFile="qml_qt6/CustomTab.qml"
+        QmlFile="qml/qml_qt6/CustomTab.qml"
     else:
-        QmlFile="qml_qt5/CustomTab.qml"
+        QmlFile="qml/qml_qt5/CustomTab.qml"
         
     return {
         "tool": {

@@ -21,6 +21,7 @@
 # V1.3.3 02-06-2022 add translated parameter in the Warning message
 # V1.4.0 18-01-2023 Init Plugin Translation
 # V1.4.1 13-02-2023 Change CustomTap.qml into CustomTab.qml
+# V1.4.2 13-03-2023 Change location i18n qml
 #------------------------------------------------------------------------------------------------------------------
 
 VERSION_QT5 = False
@@ -66,7 +67,7 @@ i18n_catalog = i18nCatalog("fdmprinter.def.json")
 i18n_extrud_catalog = i18nCatalog("fdmextruder.def.json")
 
 Resources.addSearchPath(
-    os.path.join(os.path.abspath(os.path.dirname(__file__)))
+    os.path.join(os.path.abspath(os.path.dirname(__file__)),'resources')
 )  # Plugin translation file import
 
 catalog = i18nCatalog("tabantiwarping")
